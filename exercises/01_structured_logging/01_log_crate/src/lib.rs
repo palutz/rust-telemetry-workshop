@@ -78,8 +78,7 @@ where
         // This operation *could* fail—e.g. the sink is a file and the disk is full.
         if let Ok(mut sink) = self.0.lock() {
             // Tip: checkout `writeln!` in the standard library documentation.
-
-            //todo!()
+            writeln!(sink,"{}", record.args()).unwrap();
         }
     }
 

@@ -52,7 +52,8 @@ impl log::Log for FilteredLogger {
         //
         // Check if we have a module-specific filter for this record, otherwise use the
         // default one.
-        todo!()
+        let lev = self.module_filters.get(metadata.target()).unwrap_or_else(|| &self.default_level_filter);
+        metadata.level() <= *lev
     }
 
     fn log(&self, record: &Record) {
